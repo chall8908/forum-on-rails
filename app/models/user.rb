@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   
   def self.find_user(name, pass)
     user = User.where(:name => name);
-    return user if encrypt(user.salt, pass) == password
+    return user if encrypt(user.salt, pass) == user.password
     nil
   end
   
@@ -36,6 +36,7 @@ class User < ActiveRecord::Base
       self.salt = Time.now
       self.password = encrypt(salt, password)
     end
+    true
   end
   
   def encrypt(salt, pass)
