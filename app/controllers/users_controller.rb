@@ -1,4 +1,7 @@
-class UsersController < ApplicationController
+﻿class UsersController < ApplicationController
+
+  before_filter :check_user_permissions, :except => ["index"]
+  
   # GET /users
   # GET /users.json
   def index
@@ -79,5 +82,10 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
+  end
+  
+  private
+  def check_user_permissions
+    redirecet_to root_path unless session[:user].andand.rank == "admin"
   end
 end
