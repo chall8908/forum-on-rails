@@ -1,6 +1,13 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
   attr_accessible :name, :rank, :password
+  attr_protected :salt
+  
+  validates :name,  :presence => true,
+                    :length => {:minimum => 3, :maximum => 25}
+  
+  validates :password,  :presence => true,
+                        :length => {:minimum => 3, :maximum => 25}
   
   before_save :encrypt_password
   
@@ -12,10 +19,11 @@ class User < ActiveRecord::Base
     nil
   end
   
-  def self.make_user(name, pass)
-    user = User.new({:name => name})
-    user.password = pass
+  def self.create!(params)
+    user = User.new({:name => params[:name]})
+    user.password = params[:pass]
     user.rank = :regular
+    user.save
   end
   
   def has_permission(permission)
@@ -25,8 +33,8 @@ class User < ActiveRecord::Base
   private
   def encrypt_password
     if password_changed?
-      salt = Time.now
-      password = encrypt(salt, password)
+      self.salt = Time.now
+      self.password = encrypt(salt, password)
     end
   end
   
