@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   
   def self.find_user(name, pass)
     user = User.where(:name => name).first
-    return user if user and encrypt(user.salt, pass) == user.password
+    return user if user and has_password? pass
   end
   
   def self.create!(params)
@@ -28,13 +28,17 @@ class User < ActiveRecord::Base
     @@user_ranks[permission] >= @@user_rank[rank]
   end
   
+  def has_password?(pass)
+    encrypt(salt, pass) == password
+  end
+  
   private
   def encrypt_password
     if password_changed?
       
       raise PasswordTooShortException.new unless password.length > 2
       
-      self.salt = Time.now
+      self.salt = encrypt(Time.now, password)
       self.password = encrypt(salt, password)
     end
   end
