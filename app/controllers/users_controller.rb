@@ -84,6 +84,14 @@
     end
   end
   
+  def get_user_rank
+    user = User.find_user(params[:username], params[:password]);
+    
+    respond_to do |format|
+      format.json { :json => user.andand.rank }
+    end
+  end
+  
   private
   def check_user_permissions
     redirecet_to root_path unless session[:user].andand.rank == "admin"
