@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   
   private
   def encrypt_password
-    if password.changed?
+    if password_changed?
       salt = Time.now
       password = encrypt(salt, password)
     end
