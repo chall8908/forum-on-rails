@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   end
   
   def has_permission(permission)
-    @@user_ranks[permission] => @@user_rank[rank]
+    @@user_ranks[permission] >= @@user_rank[rank]
   end
   
   private
