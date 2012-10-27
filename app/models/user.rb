@@ -1,7 +1,6 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
-  attr_accessible :name, :rank
-  attr_protected :password
+  attr_accessible :name, :rank, :password
   
   before_save :encrypt_password
   
