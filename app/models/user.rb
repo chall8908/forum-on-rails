@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
     end
   end
   
-  def encrypt(salt, pass)
+  def self.encrypt(salt, pass)
     Digest::SHA1.hexdigest "#{salt}-+-#{pass}"
   end
 end
