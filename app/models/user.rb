@@ -13,9 +13,8 @@ class User < ActiveRecord::Base
   @@user_ranks = {:super => 0, :admin => 1, :regular => 2}
   
   def self.find_user(name, pass)
-    user = User.where(:name => name);
-    return user if encrypt(user.salt, pass) == user.password
-    nil
+    user = User.where(:name => name).first
+    return user if user and encrypt(user.salt, pass) == user.password
   end
   
   def self.create!(params)
