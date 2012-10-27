@@ -1,7 +1,7 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
-  attr_accessible :name, :rank, :password
-  attr_protected :salt
+  attr_accessible :name, :password
+  attr_protected :salt, :rank
   
   validates :name,  :presence => true,
                     :length => {:minimum => 3, :maximum => 25}
