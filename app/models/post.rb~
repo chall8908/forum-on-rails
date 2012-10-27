@@ -1,5 +1,0 @@
-class Post < ActiveRecord::Base
-  has_one :user
-  belongs_to_one :thread
-  attr_accessible :body, :status, :visible
-end

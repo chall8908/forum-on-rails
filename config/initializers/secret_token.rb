@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-RBB::Application.config.secret_token = '1f7a410822a43828efa2e6a0d1aeffbcbe6efd630b3ad5e6ed5dedcb2ab2a1cf661763308d21ce1825ecd5d1d51d72ef20dbf60f8169c122b565d2bcaa29d917'
+ForumOnRails::Application.config.secret_token = 'daf24f2cec3f6ea9e4d7cff26f2eb99e3aff5e5f86e8bdd3eebe8f012d215e35abe8a258a613dcf44c70c6d589d4d3328fb0116a28d8cc7600189b4a0f29ff19'

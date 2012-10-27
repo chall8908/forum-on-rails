@@ -1,16 +1,4 @@
-RBB::Application.routes.draw do
-  resources :boards
-
-  resources :forum_threads
-
-  resources :permissions
-
-  resources :posts
-
-  resources :users
-
-  resources :ranks
-
+ForumOnRails::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
