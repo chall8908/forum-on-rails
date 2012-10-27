@@ -1,6 +1,6 @@
 ﻿class UsersController < ApplicationController
 
-  before_filter :check_user_permissions, :except => ["index"]
+  before_filter :check_user_permissions, :except => [:index, :get_user_rank]
   
   # GET /users
   # GET /users.json
@@ -94,6 +94,6 @@
   
   private
   def check_user_permissions
-    redirecet_to root_path unless session[:user].andand.rank == "admin"
+    redirecet_to root_path unless session[:user].andand.has_permission(:admin)
   end
 end
