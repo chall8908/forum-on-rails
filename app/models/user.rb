@@ -6,8 +6,7 @@ class User < ActiveRecord::Base
   validates :name,  :presence => true,
                     :length => {:minimum => 3, :maximum => 25}
   
-  validates :password,  :presence => true,
-                        :length => {:minimum => 3, :maximum => 25}
+  validates :password,  :presence => true
   
   before_save :encrypt_password
   
@@ -33,10 +32,12 @@ class User < ActiveRecord::Base
   private
   def encrypt_password
     if password_changed?
+      
+      raise PasswordTooShortException.new unless password.length > 2
+      
       self.salt = Time.now
       self.password = encrypt(salt, password)
     end
-    true
   end
   
   def encrypt(salt, pass)
