@@ -3,19 +3,16 @@
   before_filter :ensure_admin, :except => [:index, :show, :get_user_rank]
   
   # GET /users
-  # GET /users.json
   def index
     @users = User.all
   end
 
   # GET /users/1
-  # GET /users/1.json
   def show
     @user = User.find(params[:id])
   end
 
   # GET /users/new
-  # GET /users/new.json
   def new
     @user = User.new
   end
@@ -26,27 +23,24 @@
   end
 
   # POST /users
-  # POST /users.json
   def create
-    user_params = params[:user]
-    @user = User.create! :name => user_params[:name], :password => user_params[:password]
+    @user = User.create!(:name => params[:user][:name], :password => params[:password])
 
     redirect_to @user, :notice => 'User successfully created.'
   
   rescue Exception => e
     user_params = params[:user]
-    @user = User.new :name => user_params[:name], :password => user_params[:password]
+    @user = User.new(:name => params[:user][:name], :password => params[:password])
     
-    render :action => "new"
+    render :action => "new", :notice => e.message
   end
 
   # PUT /users/1
-  # PUT /users/1.json
   def update
     @user = User.find(params[:id])
     
     @user.name = params[:user][:name]
-    @user.password = params[:user][:password]
+    @user.password = params[:password]
     
     @user.save!
     
@@ -56,13 +50,11 @@
     @user = User.find(params[:id])
     
     @user.name = params[:user][:name]
-    @user.password = params[:user][:password]
     
-    render :action => "edit"
+    render :action => "edit", :notice => e.message
   end
 
   # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id])
     @user.destroy

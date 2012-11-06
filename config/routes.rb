@@ -1,7 +1,12 @@
 ForumOnRails::Application.routes.draw do
-  resources :users
+  resources :users do
+    post "get_user_rank"
+  end
   
   root :to => "users#index"
+  
+  match "/login" => "application#login", :as => "login"
+  match "/logout" => "application#logout", :as => "logout"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
