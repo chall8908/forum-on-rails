@@ -1,38 +1,23 @@
 ﻿class UsersController < ApplicationController
 
-  before_filter :check_user_permissions, :except => [:index, :get_user_rank]
+  before_filter :ensure_admin, :except => [:index, :show, :get_user_rank]
   
   # GET /users
   # GET /users.json
   def index
     @users = User.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => @users }
-    end
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render :json => @user }
-    end
   end
 
   # GET /users/new
   # GET /users/new.json
   def new
     @user = User.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render :json => @user }
-    end
   end
 
   # GET /users/1/edit
@@ -43,33 +28,37 @@
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(params[:user])
+    user_params = params[:user]
+    @user = User.create! :name => user_params[:name], :password => user_params[:password]
 
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, :notice => 'User was successfully created.' }
-        format.json { render :json => @user, :status => :created, :location => @user }
-      else
-        format.html { render :action => "new" }
-        format.json { render :json => @user.errors, :status => :unprocessable_entity }
-      end
-    end
+    redirect_to @user, :notice => 'User successfully created.'
+  
+  rescue Exception => e
+    user_params = params[:user]
+    @user = User.new :name => user_params[:name], :password => user_params[:password]
+    
+    render :action => "new"
   end
 
   # PUT /users/1
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
-
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, :notice => 'User was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render :action => "edit" }
-        format.json { render :json => @user.errors, :status => :unprocessable_entity }
-      end
-    end
+    
+    @user.name = params[:user][:name]
+    @user.password = params[:user][:password]
+    
+    @user.save!
+    
+    redirect_to @user, :notice => 'User successfully updated.'
+    
+  rescue Exception => e
+    @user = User.find(params[:id])
+    
+    @user.name = params[:user][:name]
+    @user.password = params[:user][:password]
+    
+    render :action => "edit"
   end
 
   # DELETE /users/1
@@ -78,22 +67,20 @@
     @user = User.find(params[:id])
     @user.destroy
 
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
-    end
+    redirect_to users_url
   end
   
   def get_user_rank
-    user = User.find_user(params[:username], params[:password]);
+    user = User.find_user params[:username], params[:password]
     
-    respond_to do |format|
-      format.json { :json => user.andand.rank }
-    end
+    render :json => user.andand.rank
+    
+  rescue BadUsernameOrPasswordException => e
+    render :json => e
   end
   
   private
-  def check_user_permissions
+  def ensure_admin
     redirecet_to root_path unless session[:user].andand.has_permission(:admin)
   end
 end

@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   
   validates :password,  :presence => true
   
+  after_create :set_rank
   before_save :encrypt_password
   
   @@user_ranks = {:super => 0, :admin => 1, :regular => 2}
@@ -15,13 +16,7 @@ class User < ActiveRecord::Base
   def self.find_user(name, pass)
     user = User.where(:name => name).first
     return user if user and has_password? pass
-  end
-  
-  def self.create!(params)
-    user = User.new({:name => params[:name]})
-    user.password = params[:pass]
-    user.rank = :regular
-    user.save
+    raise BadUsernameOrPasswordException.new "Incorrect username or password"
   end
   
   def has_permission(permission)
@@ -29,21 +24,22 @@ class User < ActiveRecord::Base
   end
   
   def has_password?(pass)
-    self.encrypt(salt, pass) == password
+    EncryptedPassword.encrypt(salt, pass) == password
   end
   
   private
+  
+  def set_rank
+    rank = :regular
+  end
+  
   def encrypt_password
     if password_changed?
       
       raise PasswordTooShortException.new unless password.length > 2
       
-      self.salt = encrypt(Time.now, password)
-      self.password = encrypt(salt, password)
+      password = EncryptedPassword(password)
+      salt = password.salt
     end
-  end
-  
-  def self.encrypt(salt, pass)
-    Digest::SHA1.hexdigest "#{salt}-+-#{pass}"
   end
 end
