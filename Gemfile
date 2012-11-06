@@ -38,6 +38,7 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug'
 
+gem 'passenger'
 gem 'pry'
 gem 'andand'
 gem 'immigrant'
