@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   
   private
   def set_user
-    @current_user = session[:user].andand.name
+    @current_user = session[:user]
     
     yield
     

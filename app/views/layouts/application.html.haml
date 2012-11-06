@@ -1,4 +1,4 @@
-!!!
+!!! 5
 %html
   %head
     %title Fraction Auth
@@ -7,14 +7,14 @@
     = csrf_meta_tags
   
   %body
-    #page_header
+    %header#page_header
       %h1 User Auth
       
       #user_dash
         - if logged_in?
           = link_to "login", login_path
         - else
-          Hello, #{@current_user} |
+          Hello, #{@current_user.name} |
           = link_to "logout", logout_path
 
     = yield
