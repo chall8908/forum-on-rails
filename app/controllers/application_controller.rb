@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     session[:user] = user
     
     redirect_to root_path
-  rescue AuthenticationException => e
+  rescue BadUsernameOrPasswordException => e
     render "application/login", :notice => e.message
   end
   
