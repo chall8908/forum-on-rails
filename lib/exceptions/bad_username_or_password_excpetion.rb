@@ -1,0 +1,2 @@
+class BadUsernameOrPasswordException < Exception
+end

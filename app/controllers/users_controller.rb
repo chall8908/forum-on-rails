@@ -73,6 +73,6 @@
   
   private
   def ensure_admin
-    redirecet_to root_path unless session[:user].andand.has_permission?(:admin)
+    redirecet_to root_path unless session[:user].andand.has_permission(:admin)
   end
 end
