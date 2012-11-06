@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
     raise BadUsernameOrPasswordException.new "Incorrect username or password"
   end
   
-  def has_permission(permission)
+  def has_permission?(permission)
     @@user_ranks[permission] >= @@user_rank[rank]
   end
   

@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %title Fraction Auth
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  
+  %body
+    #page_header
+      %h1 User Auth
+      
+      #user_dash
+        - if logged_in?
+          = link_to "login", login_path
+        - else
+          Hello, #{@current_user} |
+          = link_to "logout", logout_path
+
+    = yield
