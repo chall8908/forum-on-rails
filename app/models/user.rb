@@ -1,5 +1,6 @@
 require 'digest/sha1'
-require BadUsernameOrPasswordError
+require 'lib/BadUsernameOrPasswordError'
+
 class User < ActiveRecord::Base
   attr_accessible :name, :password
   attr_protected :salt, :rank
