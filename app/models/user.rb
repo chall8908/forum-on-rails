@@ -1,5 +1,3 @@
-require 'lib/bad_username_or_password_error.rb'
-
 class User < ActiveRecord::Base
   attr_accessible :name, :password
   attr_protected :salt, :rank
@@ -17,7 +15,7 @@ class User < ActiveRecord::Base
   def self.find_user(name, pass)
     user = User.where(:name => name).first
     return user if user and has_password? pass
-    raise BadUsernameOrPasswordError.new "Incorrect username or password"
+    raise StandardError.new "Incorrect username or password"
   end
   
   def has_permission?(permission)

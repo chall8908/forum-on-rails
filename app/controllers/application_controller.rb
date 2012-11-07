@@ -1,5 +1,3 @@
-require 'lib/bad_username_or_password_error.rb'
-  
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
@@ -11,7 +9,7 @@ class ApplicationController < ActionController::Base
     session[:user] = user
     
     redirect_to root_path
-  rescue BadUsernameOrPasswordError => e
+  rescue StandardError => e
     render "application/login", :notice => e.message
   end
   
