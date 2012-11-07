@@ -5,7 +5,7 @@ class EncryptedPassword < String
   attr_accessor :salt, :password
   
   def initialize(password, salt = nil)
-    @salt = salt || encrypt password, Time.now
+    @salt = salt || encrypt(password, Time.now)
     @password = encrrypt passwrod, salt
   end
   
