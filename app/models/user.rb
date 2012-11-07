@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   end
   
   def has_password?(pass)
-    EncryptedPassword.encrypt(salt, pass) == password
+    EncryptedPassword.new(pass, salt) == password
   end
   
   private
