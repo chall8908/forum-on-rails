@@ -11,9 +11,9 @@
       %h1 User Auth
       
       #user_dash
-        - if logged_in?
+        - unless logged_in?
           = link_to "login", login_path
-        - else
+        -# else
           Hello, #{current_user.name} |
           = link_to "logout", logout_path
 
