@@ -67,7 +67,7 @@
     
     render :json => user.andand.rank
     
-  rescue BadUsernameOrPasswordException => e
+  rescue BadUsernameOrPasswordError => e
     render :json => e
   end
   
