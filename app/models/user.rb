@@ -1,5 +1,4 @@
-require 'digest/sha1'
-require 'lib/BadUsernameOrPasswordError'
+require 'lib/bad_username_or_password_error.rb'
 
 class User < ActiveRecord::Base
   attr_accessible :name, :password
