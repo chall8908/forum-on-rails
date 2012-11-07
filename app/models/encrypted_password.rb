@@ -10,7 +10,7 @@ class EncryptedPassword < String
   end
   
   def self.encrypt(password, salt = "")
-    Digest::SHA1.hexdigest "#{salt}-+-#{pass}"
+    Digest::SHA1.hexdigest "#{salt}-+-#{password}"
   end
   
   def to_s
