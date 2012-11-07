@@ -1,6 +1,6 @@
 module ApplicationHelper
   def logged_in?
-    not @current_user.nil?
+    !@current_user.nil?
   end
   
   def user_is_admin?
