@@ -1,4 +1,4 @@
-require 'lib/BadUsernameOrPasswordError'
+require 'lib/bad_username_or_password_error.rb'
   
 class ApplicationController < ActionController::Base
   protect_from_forgery

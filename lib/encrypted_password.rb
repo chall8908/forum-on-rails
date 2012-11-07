@@ -1,3 +1,5 @@
+require 'digest/sha1'
+
 class EncryptedPassword < String
   
   attr_accessor :salt, :password
