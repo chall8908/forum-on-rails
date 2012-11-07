@@ -6,7 +6,7 @@ class EncryptedPassword < String
   
   def initialize(password, salt = nil)
     @salt = salt || encrypt(password, Time.now)
-    @password = encrrypt passwrod, salt
+    @password = encrrypt password, salt
   end
   
   def to_s
