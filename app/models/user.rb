@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
       
       raise PasswordTooShortException.new unless password.length > 2
       
-      password = EncryptedPassword(password)
+      password = EncryptedPassword.new(password)
       salt = password.salt
     end
   end

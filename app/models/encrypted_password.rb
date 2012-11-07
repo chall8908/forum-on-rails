@@ -13,10 +13,6 @@ class EncryptedPassword < String
     @password
   end
   
-  def ==(obj)
-    @password == obj
-  end
-  
   private
   def encrypt(password, salt = "")
     Digest::SHA1.hexdigest "#{salt}-+-#{password}"
