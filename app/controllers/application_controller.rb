@@ -1,4 +1,4 @@
-require BadUsernameOrPasswordError
+require 'lib/BadUsernameOrPasswordError'
   
 class ApplicationController < ActionController::Base
   protect_from_forgery
