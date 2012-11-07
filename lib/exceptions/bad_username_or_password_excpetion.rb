@@ -1,2 +1,0 @@
-class BadUsernameOrPasswordException < Exception
-end
