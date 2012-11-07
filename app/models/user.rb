@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   def self.find_user(name, pass)
     user = User.where(:name => name).first
     return user if user and has_password? pass
-    raise BadUsernameOrPasswordException.new "Incorrect username or password"
+    raise BadUsernameOrPasswordError.new "Incorrect username or password"
   end
   
   def has_permission?(permission)
