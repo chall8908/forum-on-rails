@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   end
   
   def has_password?(pass)
-    EncryptedPassword.new(pass, salt) == password
+    EncryptedPassword.new(pass, salt).to_s == password
   end
   
   private
@@ -33,12 +33,15 @@ class User < ActiveRecord::Base
   end
   
   def encrypt_password
+    old_pass = 
     if password_changed?
       
-      raise PasswordTooShortException.new unless password.length > 2
+      raise PasswordTooShortError.new unless password.length > 2
       
-      password = EncryptedPassword.new(password)
-      salt = password.salt
+      ep = EncryptedPassword.new(password)
+      
+      password = ep.password
+      salt = ep.salt
     end
   end
 end
