@@ -1,0 +1,2 @@
+class BadUsernameOrPasswordError < StandardError
+end
