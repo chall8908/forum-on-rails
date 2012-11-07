@@ -6,7 +6,7 @@ class EncryptedPassword < String
   
   def initialize(password, salt = nil)
     @salt = salt || encrypt(password, Time.now)
-    super encrypt(password, salt)
+    super encrypt(password, @salt)
   end
   
   private
