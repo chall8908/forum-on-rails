@@ -13,7 +13,7 @@
       #user_dash
         - unless logged_in?
           = link_to "login", login_path
-        -# else
+        - else
           Hello, #{current_user.name} |
           = link_to "logout", logout_path
 
