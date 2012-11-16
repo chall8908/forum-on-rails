@@ -13,6 +13,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+*~
 
 #keep database yaml out of repo
 /config/database.yml

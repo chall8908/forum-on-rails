@@ -1,13 +1,17 @@
 ForumOnRails::Application.routes.draw do
-  resources :users do
+  resources :users, :only => [:index, :show] do
     post "get_user_rank"
   end
-  
+
+  namespace :admin do
+    resources :users
+  end
+
   root :to => "users#index"
-  
+
   match "/login" => "application#login", :as => "login"
   match "/logout" => "application#logout", :as => "logout"
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

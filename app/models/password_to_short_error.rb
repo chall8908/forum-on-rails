@@ -1,2 +1,0 @@
-class PasswordToShortError < StandardError
-end

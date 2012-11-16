@@ -12,13 +12,15 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= label_tag :name %><br />
+    <%= text_field_tag :name %>
   </div>
   <div class="field">
     <%= label_tag :password %><br />
     <%= password_field_tag :password %>
   </div>
+
+
   <div class="actions">
     <%= f.submit %>
   </div>

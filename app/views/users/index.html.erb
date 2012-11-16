@@ -5,8 +5,6 @@
     <th>Name</th>
     <th>Rank</th>
     <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @users.each do |user| %>
@@ -14,8 +12,6 @@
     <td><%= user.name %></td>
     <td><%= user.rank %></td>
     <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) if user_is_admin? %></td>
-    <td><%= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' } if user_is_admin? %></td>
   </tr>
 <% end %>
 </table>
