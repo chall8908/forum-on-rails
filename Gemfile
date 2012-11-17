@@ -39,8 +39,12 @@ gem 'jquery-rails'
 # gem 'ruby-debug'
 
 gem 'passenger'
-gem 'pry'
+gem 'pry-rails'
 gem 'andand'
 gem 'immigrant'
 gem 'foreigner'
 gem 'haml'
+
+group :development do
+  gem 'test-unit-full'
+end

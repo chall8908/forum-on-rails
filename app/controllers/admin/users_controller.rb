@@ -24,7 +24,7 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.create!(:name => params[:name], :password => params[:password])
 
-    redirect_to @user, :notice => 'User successfully created.'
+    redirect_to admin_user_path(@user), :notice => 'User successfully created.'
 
   rescue Exception => e
     user_params = params[:user]
@@ -57,7 +57,7 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
 
-    redirect_to users_url
+    redirect_to admin_users_path
   end
 
 end
