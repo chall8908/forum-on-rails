@@ -1,5 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  
+  unless ActionController::Base.consider_all_requests_local
+    rescue_from Exception, :with => :render_general_error #500 page
+    rescue_from ActiveRecord::RecordNotFound, :with => :render_404_not_found
+    rescue_from ActiveRecord::RoutingError, :with => :render_404_not_found
+    rescue_from ActiveRecord::UnknownController, :with => :render_404_not_found
+    rescue_from ActiveRecord::UnknownAction, :with => :render_404_not_found
+  end
 
   around_filter :set_user
 
@@ -26,5 +34,15 @@ class ApplicationController < ActionController::Base
     yield
 
     @current_user = nil
+  end
+  
+  private
+  def render_general_error(e)
+    logger.error e
+    render '/application/error_page', :locals => {:status => "500 Internal Server Error", :notice => e.message}
+  end
+  
+  def render_404_not_found(e)
+    render '/application/error_page', :locals => {:status => "404 Not Found", :notice => e.message}
   end
 end
