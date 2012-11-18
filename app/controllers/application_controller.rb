@@ -4,9 +4,9 @@ class ApplicationController < ActionController::Base
   unless config.consider_all_requests_local
     rescue_from Exception, :with => :render_general_error #500 page
     rescue_from ActiveRecord::RecordNotFound, :with => :render_404_not_found
-    rescue_from ActiveRecord::RoutingError, :with => :render_404_not_found
-    rescue_from ActiveRecord::UnknownController, :with => :render_404_not_found
-    rescue_from ActiveRecord::UnknownAction, :with => :render_404_not_found
+    rescue_from ActionController::RoutingError, :with => :render_404_not_found
+    rescue_from ActionController::UnknownController, :with => :render_404_not_found
+    rescue_from ActionController::UnknownAction, :with => :render_404_not_found
   end
 
   around_filter :set_user
