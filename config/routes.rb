@@ -3,7 +3,7 @@ ForumOnRails::Application.routes.draw do
     post "get_user_rank"
   end
   
-  resources :users, :controller => Admin::UsersController, :except => [:index. :show]
+  resources :users, :controller => Admin::UsersController, :except => [:index, :show]
 
   namespace :admin do
     resources :users
