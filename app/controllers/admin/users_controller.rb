@@ -37,7 +37,7 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    @user.name = params[:user][:name]
+    @user.name = params[:name]
     @user.password = params[:password]
 
     @user.save!
@@ -47,7 +47,7 @@ class Admin::UsersController < ApplicationController
   rescue Exception => e
     @user = User.find(params[:id])
 
-    @user.name = params[:user][:name]
+    @user.name = params[:name]
 
     render :action => "edit", :notice => e.message
   end
