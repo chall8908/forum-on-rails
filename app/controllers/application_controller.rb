@@ -20,11 +20,11 @@ class ApplicationController < ActionController::Base
   end
   
   def render_general_error
-    render '/application/error_page', :locals => {:status => "500 Internal Server Error", :notice => env["action_dispatch.exception"].message}
+    render '/application/error_page', :locals => {:status => "500 Internal Server Error", :notice => $!.andand.message}
   end
   
   def render_404_not_found
-    render '/application/error_page', :locals => {:status => "404 Not Found", :notice => env["action_dispatch.exception"].message}
+    render '/application/error_page', :locals => {:status => "404 Not Found", :notice => $!.andand.message}
   end
 
   private
