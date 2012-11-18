@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     rescue_from ActiveRecord::RecordNotFound, :with => :render_404_not_found
     rescue_from ActionController::RoutingError, :with => :render_404_not_found
     rescue_from ActionController::UnknownController, :with => :render_404_not_found
-    rescue_from ActionController::UnknownAction, :with => :render_404_not_found
+    rescue_from AbstractController::ActionNotFound, :with => :render_404_not_found
   end
 
   around_filter :set_user
