@@ -13,6 +13,9 @@ ForumOnRails::Application.routes.draw do
 
   match "/login" => "application#login", :as => "login"
   match "/logout" => "application#logout", :as => "logout"
+  
+  match "/404" => "application#render_404_not_found"
+  match "/500" => "application#render_general_error"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
