@@ -2,8 +2,8 @@ $menu-accent-color: #e11;
 
 #page-header {
   position: relative;
-  background: #333;
-  border-bottom: 1px solid #888;
+  background: #111;
+  border-bottom: 1px solid #811;
   margin-bottom: 10px;
   color: #eee;
   z-index: 100;
@@ -11,7 +11,7 @@ $menu-accent-color: #e11;
 
 #logo {
   display: inline-block;
-  margin: 10px;
+  margin: 20px;
   color: #eee;
 
   &:hover {
@@ -81,11 +81,18 @@ a.user-dashboard-tab {
   }
 }
 
+.page-header {
+  padding: 5px 10px;
+  border-bottom: 1px solid #cdcdcd;
+}
+
 #main {
-  background: #fff;
-  padding: 10px;
-  border: 1px solid #ccc;
+  background: rgba(0,0,0,0.7);
   border-radius: 10px;
   margin: 10px;
-  box-shadow: 0px 0px 10px #ccc;
+  box-shadow: 0px 0px 10px #811;
+}
+
+#main-content {
+  padding: 10px;
 }

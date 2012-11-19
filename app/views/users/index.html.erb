@@ -1,17 +1,19 @@
-<h1>Listing users</h1>
+<h2 class='page-header'>Listing users</h2>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Rank</th>
-    <th></th>
-  </tr>
+<div id='main-content'>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Rank</th>
+      <th></th>
+    </tr>
 
-<% @users.each do |user| %>
-  <tr>
-    <td><%= user.name %></td>
-    <td><%= user.rank %></td>
-    <td><%= link_to 'Show', user %></td>
-  </tr>
-<% end %>
-</table>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.rank %></td>
+      <td><%= link_to 'Show', user %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
