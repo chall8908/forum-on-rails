@@ -1,3 +1,6 @@
+$menu-color: #c11;
+$menu-accent-color: #811;
+
 body {
   background: black url(http://www.fractiongamers.com/forum/Themes/chemical/images/theme/background.jpg) scroll no-repeat 50% 79px;
   background-size: 100%;
@@ -27,11 +30,12 @@ pre {
 }
 
 a, a:visited {
-  color: #444;
+  color: lighten($menu-accent-color, 15%);
   text-decoration: none;
 
   &:hover {
-    color: #000;
+    color: lighten($menu-accent-color, 20%);
+    text-decoration: underline;
   }
 }
 

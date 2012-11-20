@@ -1,9 +1,7 @@
-$menu-accent-color: #c11;
-
 #page-header {
   position: relative;
   background: #1F0808;
-  border-bottom: 1px solid #811;
+  border-bottom: 1px solid $menu-accent-color;
   margin-bottom: 10px;
   color: #eee;
   z-index: 100;
@@ -12,25 +10,21 @@ $menu-accent-color: #c11;
 #logo {
   display: inline-block;
   margin: 20px;
-  color: #eee;
-
-  &:hover {
-    color: #fff;
-  }
 
   h1 {
     display: inline-block;
+    color: #eee;
   }
 }
 
 #user-dashboard {
-  background: $menu-accent-color; /* Old browsers */
-  background: -moz-linear-gradient(top, $menu-accent-color 0%, darken($menu-accent-color, 10%) 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$menu-accent-color), color-stop(100%,darken($menu-accent-color, 10%))); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, $menu-accent-color 0%,darken($menu-accent-color, 10%) 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, $menu-accent-color 0%,darken($menu-accent-color, 10%) 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, $menu-accent-color 0%,darken($menu-accent-color, 10%) 100%); /* IE10+ */
-  background: linear-gradient(to bottom, $menu-accent-color 0%,darken($menu-accent-color, 10%) 100%); /* W3C */
+  background: $menu-color; /* Old browsers */
+  background: -moz-linear-gradient(top, $menu-color 0%, darken($menu-color, 10%) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$menu-color), color-stop(100%,darken($menu-color, 10%))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, $menu-color 0%,darken($menu-color, 10%) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, $menu-color 0%,darken($menu-color, 10%) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, $menu-color 0%,darken($menu-color, 10%) 100%); /* IE10+ */
+  background: linear-gradient(to bottom, $menu-color 0%,darken($menu-color, 10%) 100%); /* W3C */
   height: 30px;
 
   .separator, .user-dashboard-tab {
@@ -41,13 +35,13 @@ $menu-accent-color: #c11;
 
   .separator {
 
-    background: $menu-accent-color; /* Old browsers */
-    background: -moz-linear-gradient(top, $menu-accent-color 0%, darken($menu-accent-color, 30%) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$menu-accent-color), color-stop(100%,darken($menu-accent-color, 30%))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, $menu-accent-color 0%,darken($menu-accent-color,30%) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, $menu-accent-color 0%,darken($menu-accent-color, 30%) 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, $menu-accent-color 0%,darken($menu-accent-color, 30%) 100%); /* IE10+ */
-    background: linear-gradient(to bottom, $menu-accent-color 0%,darken($menu-accent-color, 30%) 100%); /* W3C */
+    background: $menu-color; /* Old browsers */
+    background: -moz-linear-gradient(top, $menu-color 0%, darken($menu-color, 30%) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$menu-color), color-stop(100%,darken($menu-color, 30%))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, $menu-color 0%,darken($menu-color,30%) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, $menu-color 0%,darken($menu-color, 30%) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, $menu-color 0%,darken($menu-color, 30%) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, $menu-color 0%,darken($menu-color, 30%) 100%); /* W3C */
 
     width: 1px;
     height: 30px;
@@ -57,7 +51,7 @@ $menu-accent-color: #c11;
 #user-dashboard-greeting {
   padding: 4px 10px 0px;
   font-weight: bold;
-  text-shadow: 1px 1px 1px #833;
+  text-shadow: 1px 1px 1px $menu-accent-color;
   float: right;
 }
 
@@ -73,11 +67,12 @@ a.user-dashboard-tab {
   padding: 7px 10px 5px;
   color: #eee;
   font-weight: bold;
-  text-shadow: 1px 1px 1px #833;
+  text-shadow: 1px 1px 1px $menu-accent-color;
 
   &:hover {
+    background: $menu-color;
     color: #fff;
-    background: $menu-accent-color;
+    text-decoration: none;
   }
 }
 
@@ -90,7 +85,7 @@ a.user-dashboard-tab {
   background: rgba(0,0,0,0.7);
   border-radius: 10px;
   margin: 10px;
-  box-shadow: 0px 0px 10px #811;
+  box-shadow: 0px 0px 10px $menu-accent-color;
 }
 
 #main-content {
