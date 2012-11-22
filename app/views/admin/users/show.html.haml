@@ -7,15 +7,6 @@
     %b Rank:
     = @user.rank
 
-  %p
-    %b Password hash:
-    = @user.password
-
-  %p
-    %b Salt:
-    = @user.salt
-
-
-= link_to 'Edit', edit_user_path(@user)
-|
-= link_to 'Back', admin_users_path
+  = link_to 'Edit', edit_user_path(@user)
+  |
+  = link_to 'Back', admin_users_path
