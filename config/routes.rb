@@ -2,18 +2,18 @@ ForumOnRails::Application.routes.draw do
   resources :users, :only => [:index, :show] do
     post "get_user_rank"
   end
-  
+
   resources :users, :controller => "admin/users", :except => [:index, :show]
 
   namespace :admin do
-    resources :users
+    resources :users, :only => [:index, :show]
   end
 
   root :to => "users#index"
 
   match "/login" => "application#login", :as => "login"
   match "/logout" => "application#logout", :as => "logout"
-  
+
   match "/404" => "application#render_404_not_found"
   match "/500" => "application#render_general_error"
 

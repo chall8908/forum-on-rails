@@ -1,0 +1,14 @@
+h2.page-header Listing users
+
+#main-content
+  %table
+    %tr
+      %th Name
+      %th Rank
+      %th
+
+  - @users.each do |user|
+    %tr
+      %td= user.name
+      %td= user.rank
+      %td= link_to 'Show', user

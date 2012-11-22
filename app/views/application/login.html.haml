@@ -1,8 +1,9 @@
 = render "application/partials/errors"
 
-%h2 Login
+%h2.page-header Login
 
-= form_tag :login, :id => "login_form" do
-  = text_field_tag :name
-  = password_field_tag :password
-  = submit_tag "Login"
+#main-content
+  = form_tag :login, :id => "login_form" do
+    = text_field_tag :name
+    = password_field_tag :password
+    = submit_tag "Login"

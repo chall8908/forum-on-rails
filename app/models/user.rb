@@ -31,6 +31,10 @@ class User < ActiveRecord::Base
     EncryptedPassword.new(pass, salt).to_s == password
   end
 
+  def self.get_ranks
+    @@user_ranks
+  end
+
   private
 
   def set_rank

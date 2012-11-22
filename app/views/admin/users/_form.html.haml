@@ -1,0 +1,23 @@
+= form_for @user do |f|
+  - if @user.errors.any?
+    .error
+      %h2 #{pluralize(@user.errors.count, "error")} prohibited this user from being saved:
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = label_tag :name
+    = text_field_tag :name, @user.name
+
+  .field
+    = label_tag :password
+    = password_field_tag :password
+
+  - unless @user.id.nil?
+    .field
+      = label_tag :rank
+      = select_tag :rank, options_for_select(User.get_ranks.keys, @user.rank.andand.to_sym)
+
+  .actions
+    = f.submit "Save"
