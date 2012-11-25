@@ -1,7 +1,6 @@
 %h2.page-header #{status}
 
 #main-content
+  = image_tag "/assets/ohnoes.jpg", :id => "error-image"
+  %p#error-message= message
   = render "application/partials/errors"
-
-  = image_tag "/ohnoes.jpg", :class => "error-image"
-  #error-message= message
