@@ -28,12 +28,14 @@ Logging::Rails.configure do |config|
   # pattern layout is used to format the log events into strings before
   # writing.
   #
-  Logging.appenders.stdout( 'stdout',
-    :auto_flushing => true,
-    :layout => Logging.layouts.pattern(
+  bright_scheme = Logging.layouts.pattern(
       :pattern => '[%d] %-5l %c : %m\n',
       :color_scheme => 'bright'
     )
+
+  Logging.appenders.stdout( 'stdout',
+    :auto_flushing => true,
+    :layout => bright_scheme
   ) if config.log_to.include? 'stdout'
 
   # Configure an appender that will write log events to a file. The file will
@@ -47,7 +49,7 @@ Logging::Rails.configure do |config|
     :age => 'daily',
     :truncate => false,
     :auto_flushing => true,
-    :layout => layout
+    :layout => bright_scheme
   ) if config.log_to.include? 'file'
 
   # Configure an appender that will send an email for "error" and "fatal" log
