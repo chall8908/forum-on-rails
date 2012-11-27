@@ -44,6 +44,7 @@ gem 'andand'
 gem 'immigrant'
 gem 'foreigner'
 gem 'haml'
+gem 'logging-rails', :require => 'logging/rails'
 
 group :development do
   gem 'test-unit-full'
