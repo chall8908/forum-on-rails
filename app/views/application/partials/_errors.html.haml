@@ -1,2 +1,5 @@
-- if notice
-  .error= notice
+- if @error
+  #global-error= @error
+
+- if @notice
+  #global-message= @notice

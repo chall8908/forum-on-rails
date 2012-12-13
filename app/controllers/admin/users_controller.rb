@@ -1,4 +1,4 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < Admin::ApplicationController
 
   # GET /users
   def index
@@ -24,13 +24,16 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.create!(:name => params[:name], :password => params[:password])
 
-    redirect_to admin_user_path(@user), :notice => 'User successfully created.'
+    @message = 'User successfully created.'
+    redirect_to admin_user_path(@user)
 
   rescue Exception => e
-    user_params = params[:user]
+    logger.error e.message + "\n\n" + e.backtrace.join("\n")
+
     @user = User.new(:name => params[:name], :password => params[:password])
 
-    render :action => "new", :notice => e.message
+    @error = e.message
+    render :action => "new"
   end
 
   # PUT admin/users/1
@@ -45,11 +48,14 @@ class Admin::UsersController < ApplicationController
     redirect_to @user, :notice => 'User successfully updated.'
 
   rescue Exception => e
-    @user = User.find(params[:id])
+    logger.error e.message + "\n\n" + e.backtrace.join("\n")
 
+    @user = User.find(params[:id])
     @user.name = params[:name]
 
-    render :action => "edit", :notice => e.message
+    @error = e.message
+
+    render :action => "edit"
   end
 
   # DELETE admin/users/1

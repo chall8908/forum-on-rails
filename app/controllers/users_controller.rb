@@ -10,6 +10,12 @@
     @user = User.find(params[:id])
   end
 
+  def register
+    if(params[:user])
+      User.create()
+    end
+  end
+
   def get_user_rank
     user = User.find_user params[:username], params[:password]
 

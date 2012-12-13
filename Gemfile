@@ -30,7 +30,8 @@ gem 'jquery-rails'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
+#gem 'passenger'
 
 # Deploy with Capistrano
 # gem 'capistrano'
@@ -38,9 +39,9 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug'
 
-gem 'passenger'
 gem 'pry-rails'
 gem 'andand'
+gem 'cancan'
 gem 'immigrant'
 gem 'foreigner'
 gem 'haml'

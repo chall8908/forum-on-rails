@@ -10,7 +10,8 @@ class ApplicationController < ActionController::Base
 
     redirect_to root_path
   rescue BadUsernameOrPasswordError => e
-    render "application/login", :notice => e.message
+    @error = e.message
+    render "application/login"
   end
 
   def logout
@@ -18,15 +19,15 @@ class ApplicationController < ActionController::Base
 
     redirect_to login_path
   end
-  
+
   def render_general_error
-    message = "Our server has encountered an error and couldn't finish your request.  We're sorry!"
-    render '/application/error_page', :locals => {:status => "500 Internal Server Error", :notice => $!.andand.message, :message => message}
+    @error = $!.andand.message
+    render_error_page "500 Internal Server Error", "Our server has encountered an error and couldn't finish your request.  We're sorry!"
   end
-  
+
   def render_404_not_found
-    message = "The page you're looking for isn't here.  Please try again elsewhere.  Maybe you'll find it."
-    render '/application/error_page', :locals => {:status => "404 Not Found", :notice => $!.andand.message, :message => message}
+    @error = $!.andand.message
+    render_error_page "404 Not Found", "The page you're looking for isn't here.  Please try again elsewhere.  Maybe you'll find it."
   end
 
   private
@@ -36,5 +37,9 @@ class ApplicationController < ActionController::Base
     yield
 
     @current_user = nil
+  end
+
+  def render_error_page(status, message)
+    render '/application/error_page', :locals => {:status => status :message => message}
   end
 end
