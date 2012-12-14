@@ -83,9 +83,10 @@ a.user-dashboard-tab {
 
 #main {
   background: rgba(0,0,0,0.7);
+  max-width: 1080px;
   border-radius: 10px;
-  margin: 10px;
-  box-shadow: 0px 0px 10px $menu-accent-color;
+  margin: 10px auto;
+  box-shadow: 0px 0px 15px #993636;
 }
 
 #main-content {
