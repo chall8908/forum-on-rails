@@ -40,6 +40,6 @@ class ApplicationController < ActionController::Base
   end
 
   def render_error_page(status, message)
-    render '/application/error_page', :locals => {:status => status :message => message}
+    render '/application/error_page', :locals => {:status => status, :message => message}
   end
 end
