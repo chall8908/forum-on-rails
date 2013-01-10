@@ -48,5 +48,5 @@ gem 'haml'
 gem 'logging-rails', :require => 'logging/rails'
 
 group :development do
-  gem 'test-unit-full'
+  #gem 'test-unit-full'
 end
