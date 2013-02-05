@@ -3,6 +3,6 @@ class Admin::ApplicationController < ApplicationController
 
   private
   def check_permissions
-    redirect_to root_path if @current_user.has_permission? :admin
+    redirect_to root_path unless @current_user.has_permission? :admin
   end
 end

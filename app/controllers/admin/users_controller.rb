@@ -40,12 +40,13 @@ class Admin::UsersController < Admin::ApplicationController
   def update
     @user = User.find(params[:id])
 
-    @user.name = params[:name]
-    @user.password = params[:password]
+    @user.update_attributes(params.permit(:name, :password, :email))
 
     @user.save!
 
-    redirect_to @user, :notice => 'User successfully updated.'
+    @message = 'User successfully updated.'
+
+    redirect_to admin_user(@user)
 
   rescue Exception => e
     logger.error e.message + "\n\n" + e.backtrace.join("\n")

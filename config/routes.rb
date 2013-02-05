@@ -11,8 +11,10 @@ ForumOnRails::Application.routes.draw do
 
   root :to => "users#index"
 
-  match "/login" => "application#login", :as => "login"
-  match "/logout" => "application#logout", :as => "logout"
+  match "/login" => "application#login",    as: :login
+  match "/logout" => "application#logout",  as: :logout
+
+  match "/register" => "users#register",    as: :register
 
   match "/404" => "application#render_404_not_found"
   match "/500" => "application#render_general_error"

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include ActiveModel::ForbiddenAttributesProtection
   #attr_accessible :name, :password, :email
   attr_protected :salt, :rank
 

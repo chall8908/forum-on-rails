@@ -134,6 +134,10 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    strong_parameters (0.1.5)
+      actionpack (~> 3.1)
+      activemodel (~> 3.1)
+      railties (~> 3.1)
     test-unit (2.5.2)
     test-unit-full (0.0.3)
       test-unit
@@ -187,6 +191,7 @@ DEPENDENCIES
   pry-rails
   rails (= 3.2.8)
   sass-rails (~> 3.2.3)
+  strong_parameters
   test-unit-full
   therubyracer
   uglifier (>= 1.0.3)

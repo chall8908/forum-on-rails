@@ -11,8 +11,11 @@
   end
 
   def register
+    @user = User.new
+
     if(params[:user])
-      User.create()
+      @user = User.create!(user_params)
+      render :show
     end
   end
 
@@ -23,5 +26,10 @@
 
   rescue BadUsernameOrPasswordError => e
     render :json => e
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:name, :password, :email)
   end
 end
