@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -49,5 +49,5 @@ gem 'haml'
 gem 'logging-rails', :require => 'logging/rails'
 
 group :development do
-  gem 'test-unit-full'
+  #gem 'test-unit-full'
 end
