@@ -13,7 +13,7 @@ gem 'json'
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  #gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', :platforms => :ruby
@@ -30,8 +30,8 @@ gem 'jquery-rails'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-gem 'unicorn'
-#gem 'passenger'
+#gem 'unicorn'
+gem 'passenger'
 
 # Deploy with Capistrano
 # gem 'capistrano'
@@ -41,12 +41,13 @@ gem 'unicorn'
 
 gem 'pry-rails'
 gem 'andand'
-gem 'cancan'
 gem 'strong_parameters'
 gem 'immigrant'
 gem 'foreigner'
 gem 'haml'
 gem 'logging-rails', :require => 'logging/rails'
+gem 'forem', :git => "git://github.com/radar/forem.git"
+gem 'will_paginate', '3.0.3'
 
 group :development do
   #gem 'test-unit-full'

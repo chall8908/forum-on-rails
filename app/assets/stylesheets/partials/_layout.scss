@@ -18,33 +18,10 @@
 }
 
 #user-dashboard {
-  background: $menu-color; /* Old browsers */
-  background: -moz-linear-gradient(top, $menu-color 0%, darken($menu-color, 10%) 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$menu-color), color-stop(100%,darken($menu-color, 10%))); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, $menu-color 0%,darken($menu-color, 10%) 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, $menu-color 0%,darken($menu-color, 10%) 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, $menu-color 0%,darken($menu-color, 10%) 100%); /* IE10+ */
-  background: linear-gradient(to bottom, $menu-color 0%,darken($menu-color, 10%) 100%); /* W3C */
-  height: 30px;
+  margin: 0px;
 
-  .separator, .user-dashboard-tab {
-    display: inline-block;
-    margin-right: -3px;
-    vertical-align: top;
-  }
-
-  .separator {
-
-    background: $menu-color; /* Old browsers */
-    background: -moz-linear-gradient(top, $menu-color 0%, darken($menu-color, 30%) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$menu-color), color-stop(100%,darken($menu-color, 30%))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, $menu-color 0%,darken($menu-color,30%) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, $menu-color 0%,darken($menu-color, 30%) 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, $menu-color 0%,darken($menu-color, 30%) 100%); /* IE10+ */
-    background: linear-gradient(to bottom, $menu-color 0%,darken($menu-color, 30%) 100%); /* W3C */
-
-    width: 1px;
-    height: 30px;
+  .divider-vertical {
+    margin: 0px;
   }
 }
 

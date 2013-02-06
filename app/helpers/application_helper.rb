@@ -1,9 +1,9 @@
 module ApplicationHelper
   def logged_in?
-    not @current_user.blank?
+    not forem_user.blank?
   end
   
   def user_is_admin?
-    @current_user.andand.has_permission? :admin
+    forem_user.andand.forem_admin
   end
 end

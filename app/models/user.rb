@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
-  #attr_accessible :name, :password, :email
-  attr_protected :salt, :rank
+  
+  attr_protected :salt
 
   validates :name,  :presence   => true,
                     :length     => {:minimum => 3, :maximum => 25},
@@ -20,10 +20,6 @@ class User < ActiveRecord::Base
   validates :email, :presence   => true,
                     :uniqueness => {:case_sensitive => false}
 
-  before_create :set_rank
-
-  @@user_ranks = {:super => 0, :admin => 1, :regular => 2}
-
 # Class Methods
   def self.find_user(name, pass)
     user = User.where(:name => name).first
@@ -31,21 +27,16 @@ class User < ActiveRecord::Base
     raise BadUsernameOrPasswordError.new "Incorrect username or password"
   end
 
-  def self.get_ranks
-    @@user_ranks
-  end
-
-  def has_permission?(permission)
-    @@user_ranks[permission] >= @@user_ranks[rank.to_sym]
-  end
-
+# Instance Methods
   def has_password?(pass)
-    EncryptedPassword.new(pass, salt).to_s == password
+    EncryptedPassword.new(pass, salt) == password
   end
 
-  private
+  def custom_avatar_url
+    ""
+  end
 
-  def set_rank
-    self.rank = "regular"
+  def to_s
+    name
   end
 end

@@ -1,4 +1,6 @@
 ForumOnRails::Application.routes.draw do
+  mount Forem::Engine, :at => "/"
+
   resources :users, :only => [:index, :show] do
     post "get_user_rank"
   end
@@ -9,8 +11,6 @@ ForumOnRails::Application.routes.draw do
     resources :users, :only => [:index, :show]
   end
 
-  root :to => "users#index"
-
   match "/login" => "application#login",    as: :login
   match "/logout" => "application#logout",  as: :logout
 
@@ -18,6 +18,8 @@ ForumOnRails::Application.routes.draw do
 
   match "/404" => "application#render_404_not_found"
   match "/500" => "application#render_general_error"
+
+  root :to => "forem/forums#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

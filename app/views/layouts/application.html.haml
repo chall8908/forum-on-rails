@@ -8,23 +8,28 @@
 
   %body
     %header#page-header
-      = link_to '<h1>User Auth</h1>'.html_safe, root_path, :id => "logo"
+      = link_to '<h1>Fraction Gamers</h1>'.html_safe, root_path, :id => "logo"
 
-      #user-dashboard
-        - unless logged_in?
-          = link_to "Login", login_path, :class => "user-dashboard-tab"
-          .separator
-        - else
-          %h2#user-dashboard-greeting
+      #user-dashboard.navbar
+        .navbar-inner
+          %ul.nav
+            - unless logged_in?
+              %li
+                = link_to "Login", main_app.login_path, :class => "user-dashboard-tab"
+              %li.divider-vertical
+            - else
+              - if user_is_admin?
+                %li
+                  = link_to 'Admin Panel', main_app.admin_users_path, :class => "user-dashboard-tab"
+                %li.divider-vertical
+
+              %li
+                = link_to "Logout", main_app.logout_path, :class => "user-dashboard-tab"
+              %li.divider-vertical
+
+          #user-dashboard-greeting
             Hello,
-            = link_to "#{@current_user.name}", admin_user_path(@current_user), :id => "user-settings-link"
-
-          - if user_is_admin?
-            = link_to 'Admin Panel', admin_users_path, :class => "user-dashboard-tab"
-            .separator
-
-          = link_to "Logout", logout_path, :class => "user-dashboard-tab"
-          .separator
+            = link_to "#{forem_user.name}", main_app.admin_user_path(forem_user), :id => "user-settings-link"
 
     #main
       = yield

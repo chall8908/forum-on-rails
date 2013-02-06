@@ -1,12 +1,18 @@
 class ApplicationController < ActionController::Base
+
   protect_from_forgery
 
-  around_filter :set_user
+  def forem_user
+    User.find(session[:user_id])
+  rescue
+    nil
+  end
+  helper_method :forem_user
 
   def login
     user = User.find_user params[:name], params[:password]
 
-    session[:user] = user
+    session[:user_id] = user.id
 
     redirect_to root_path
   rescue BadUsernameOrPasswordError => e
@@ -15,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logout
-    session[:user] = nil
+    session[:user_id] = nil
 
     redirect_to login_path
   end
@@ -31,13 +37,6 @@ class ApplicationController < ActionController::Base
   end
 
   private
-  def set_user
-    @current_user = session[:user]
-
-    yield
-
-    @current_user = nil
-  end
 
   def render_error_page(status, message)
     render '/application/error_page', :locals => {:status => status, :message => message}
