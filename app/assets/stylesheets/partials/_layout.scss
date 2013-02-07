@@ -1,3 +1,7 @@
+a:hover {
+  text-decoration: none;
+}
+
 #page-header {
   position: relative;
   background: #1F0808;
@@ -41,15 +45,9 @@
 }
 
 a.user-dashboard-tab {
-  padding: 7px 10px 5px;
-  color: #eee;
-  font-weight: bold;
-  text-shadow: 1px 1px 1px $menu-accent-color;
 
-  &:hover {
-    background: $menu-color;
-    color: #fff;
-    text-decoration: none;
+  &:active {
+    background: #8c221a;
   }
 }
 

@@ -2,34 +2,44 @@
 %html
   %head
     %title Fraction Auth
-    = stylesheet_link_tag    "application", :media => "all"
+    = stylesheet_link_tag    "application", media: "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
 
   %body
     %header#page-header
-      = link_to '<h1>Fraction Gamers</h1>'.html_safe, root_path, :id => "logo"
+      = link_to '<h1>Fraction Gamers</h1>'.html_safe, root_path, id: "logo"
 
       #user-dashboard.navbar
         .navbar-inner
           %ul.nav
-            - unless logged_in?
+            %li.divider-vertical
+            %li
+              - unless logged_in?
+                = link_to "Login", main_app.login_path, class: "user-dashboard-tab"
+              - else
+                = link_to "Logout", main_app.logout_path, class: "user-dashboard-tab"
+            %li.divider-vertical
+            %li
+              = link_to "Users", main_app.users_path, class: "user-dashboard-tab"
+            %li.divider-vertical
+            - if logged_in? && user_is_admin?
               %li
-                = link_to "Login", main_app.login_path, :class => "user-dashboard-tab"
-              %li.divider-vertical
-            - else
-              - if user_is_admin?
-                %li
-                  = link_to 'Admin Panel', main_app.admin_users_path, :class => "user-dashboard-tab"
-                %li.divider-vertical
-
-              %li
-                = link_to "Logout", main_app.logout_path, :class => "user-dashboard-tab"
+                = link_to 'Admin Panel', forem.admin_root_path, class: "user-dashboard-tab"
               %li.divider-vertical
 
-          #user-dashboard-greeting
-            Hello,
-            = link_to "#{forem_user.name}", main_app.admin_user_path(forem_user), :id => "user-settings-link"
+          - if logged_in?
+            #user-dashboard-greeting
+              Hello,
+              = link_to_unless_current "#{forem_user.name}", main_app.admin_user_path(forem_user), id: "user-settings-link"
+
+      :javascript
+        $(".user-dashboard-tab").each(function() {
+          var path = "#{request.path}";
+          if(path !== "/" && $(this).attr('href').match(path)) {
+            $(this).parent().addClass("active");
+          }
+        });
 
     #main
       = yield
